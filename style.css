@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.container {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.07);
+    padding: 25px;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h2 { margin-top: 0; font-size: 1.2rem; color: #00c6ff; }
+
+button {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    padding: 15px 25px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
+}
+
+.btn-sorteio {
+    background: #222; 
+    border: 1px solid #444;
+}
+
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-top: 10px;
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    color: white;
+    box-sizing: border-box;
+}
+
+.animais {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.animal {
+    padding: 15px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+
+.animal:hover {
+    background: rgba(0, 200, 255, 0.2);
+    border-color: #00c6ff;
+}
+
+.selecionado {
+    background: #00c6ff !important;
+    color: #000;
+    font-weight: bold;
+    transform: scale(1.05);
+}
+
+.resultado {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(0,0,0,0.4);
+    display: none;
+}
+
+.ganhou { color: #00ff88; text-shadow: 0 0 10px rgba(0,255,136,0.5); }
+.perdeu { color: #ff4d4d; }
+
+ul#historico {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+ul#historico li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+}
+/* --- MELHORIAS DE ESTILO ADICIONADAS --- */
+
+/* Animação para quando o jogador ganha */
+@keyframes pulse-gold {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(0, 255, 136, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+}
+
+.ganhou {
+    display: block;
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid #00ff88;
+    border-radius: 10px;
+    color: #00ff88;
+    font-weight: 900;
+    text-transform: uppercase;
+    animation: pulse-gold 2s infinite;
+}
+
+/* Efeito nos campos de digitação de números */
+.num_digitado {
+    border: 2px solid rgba(0, 198, 255, 0.3);
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00c6ff;
+    letter-spacing: 5px;
+    transition: all 0.3s ease;
+}
+
+.num_digitado:focus {
+    border-color: #00c6ff;
+    background: rgba(0, 198, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.4);
+}
+
+/* Estilo para o estado de "Sorteando" */
+#resultado h3 {
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+/* Melhoria na lista de histórico para leitura rápida */
+ul#historico li {
+    background: rgba(255, 255, 255, 0.02);
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border-left: 4px solid #00c6ff;
+}

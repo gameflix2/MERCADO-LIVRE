@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETFOURBICHO APOSTAS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>BET FOUR BICHO</header>
+
+<div class="container">
+    <div class="card">
+        <h2>1. Modalidade e Valor</h2>
+        <select id="tipo" onchange="ajustarInterface()">
+            <optgroup label="Grupos">
+                <option value="grupo_simples">Grupo Simples</option>
+                <option value="duque_grupo">Duque de Grupo (2 bichos)</option>
+                <option value="terno_grupo">Terno de Grupo (3 bichos)</option>
+                <option value="quadra_grupo">Quadra de Grupo (4 bichos)</option>
+                <option value="quina_grupo">Quina de Grupo (5 bichos)</option>
+            </optgroup>
+            <optgroup label="Números">
+                <option value="dezena">Dezena</option>
+                <option value="centena">Centena</option>
+                <option value="milhar">Milhar</option>
+                <option value="duque_dezena">Duque de Dezena</option>
+                <option value="terno_dezena">Terno de Dezena</option>
+            </optgroup>
+            <optgroup label="Combinadas/Especiais">
+                <option value="mc">Milhar e Centena (MC)</option>
+                <option value="cercado_5">Cercado (1º ao 5º)</option>
+                <option value="cercado_7">Cercado (1º ao 7º)</option>
+                <option value="passe_vai">Passe Vai</option>
+                <option value="passe_vem">Passe Vem</option>
+                <option value="inlay">Inlay (M ou C)</option>
+            </optgroup>
+        </select>
+
+        <div id="campos_especificos"></div>
+
+        <input type="number" id="valor" placeholder="Valor da aposta (R$)">
+    </div>
+
+    <div class="card">
+        <h2 id="titulo_selecao">2. Selecione o Animal</h2>
+        <p id="subtitulo_selecao" style="font-size: 0.8rem; color: #aaa;">Selecione 1 animal</p>
+        <div class="animais" id="animais"></div>
+    </div>
+
+    <div class="card">
+        <button onclick="apostar()">CONFIRMAR APOSTA</button>
+        <button onclick="sortear()" class="btn-sorteio">GERAR SORTEIO (1º ao 5º)</button>
+    </div>
+
+    <div class="resultado" id="resultado"></div>
+
+    <div class="card">
+        <h2>Histórico de Jogos</h2>
+        <ul id="historico"></ul>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
